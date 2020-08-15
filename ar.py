@@ -39,7 +39,7 @@ class AR():
     """
     @brief: Function to select the tag type to be processsed
     @param None
-    @return: Returns the video file chosen
+    @return: None
     """
     def choice(self):
         print("Enter the video number(1/2/3):  ")
@@ -119,7 +119,7 @@ class AR():
     
     
     """
-    @brief : Funttion to warp the image from or onto the image
+    @brief : Funtion to warp the image from or onto the image
     @param : y_coord -> Selected y coordinates to warp
              x_coord -> Selected x coordinates to warp
              H_mat -> The homography matrix
@@ -197,7 +197,7 @@ class AR():
     @brief : Function to check if the detected image is the tag ot not
     @param : image -> The selected image to be warped.
     @return : image_border -> The value of the size of the image border
-    inrtensity if more than 0.90.
+    intensity if more than 0.92.
     """
     def double_check(self, image):
         # Drawing a recttangle on the tag and checking the outline
@@ -345,14 +345,11 @@ class AR():
                                 continue
                             warped_image = np.bitwise_or(warped_image,
                                                          self.warp_in(self.picture, H_matrix_image, (rows,cols), coordinates))
-#                             cv2.imshow("warped", warped_image)
                             warped_image_gray = cv2.cvtColor(warped_image,cv2.COLOR_BGR2GRAY)
                             warped_image_threshold = cv2.threshold(warped_image_gray, 0, 250, cv2.THRESH_BINARY_INV)[1]
                             curr_frame_slotted = cv2.bitwise_and(curr_frame_orginal, curr_frame_orginal, 
                                                                 mask =  warped_image_threshold)
                             overlay_result = cv2.add(curr_frame_slotted, warped_image)
-                            # cv2.imshow("overlay", overlay_result)
-                            # cv2.imshow("slottted", curr_frame_slotted)
                             rotation, translation, k_matrix = self.generate_matrix_cube(H_inv_matrix_image)
                             coordinates_3D, jacobian = cv2.projectPoints(self.cube_coordinates, rotation,
                                                                         translation, k_matrix, np.zeros((1, 4)))
@@ -362,20 +359,13 @@ class AR():
             overlay_result_disp = cv2.resize(overlay_result, dsize=None, fx = self.scale, fy = self.scale)
             coordinates_3D_disp = cv2.resize(coordinates_3D, dsize=None, fx= self.scale, fy = self.scale)
             image_unwarp_disp = cv2.resize(image_unwarp_threshold, dsize=None, fx = self.scale, fy = self.scale)
-            horizontal_pad = (curr_frame_disp.shape[1] - tag_matrix.shape[1]) // 2
-            vertical_pad = (curr_frame_disp.shape[0] - tag_matrix.shape[0]) // 2
-            coordinates_3D_disp = cv2.copyMakeBorder(coordinates_3D_disp,top =0,
-                                                    bottom =0, left = coordinates_3D_disp.shape[1] // 2,
-                                                    right = coordinates_3D_disp.shape[1] // 2,
-                                                    borderType = cv2.BORDER_CONSTANT, value =(48, 48, 48))
-            # Join all the final images together to get the final result folder
-            final_display = np.concatenate((np.concatenate((curr_frame_disp, overlay_result_disp),axis = 1),
-                                          coordinates_3D_disp),
-                                          axis = 0)
+      
             # Display the final result 
-            cv2.imshow("Result Windows", final_display)
+            cv2.imshow("Result Windows 1", curr_frame_disp)
+            cv2.imshow("Result Windows 2", overlay_result_disp)
+            cv2.imshow("Result Windows 3", coordinates_3D_disp)
             # Display the warped tag result
-            cv2.imshow("Warp", image_unwarp_disp)
+            cv2.imshow("Warp", cv2.resize(image_unwarp_disp,(314,324)))
             key = cv2.waitKey(1)
             if key == 27:
                 break
