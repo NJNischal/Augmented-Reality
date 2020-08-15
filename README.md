@@ -3,6 +3,8 @@
 # Augmented-Reality
 Python and OpenCV project for AR tag detection and tracking, Image and 3D cube super-imposition
 
+![](AR_output.gif)
+
 ## Overview
 Our objective is to develop a Detection and Tracking algorithm that identifies AR tags IDs and orientation from a video file and superimpose an image and a 3D virtual cube on the tag. The project was programmed using python 3 with OpenCV and NumPy libraries.
 
