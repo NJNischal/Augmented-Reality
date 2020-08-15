@@ -12,6 +12,9 @@ Our objective is to develop a Detection and Tracking algorithm that identifies A
 
 An AR Tag is a fiducial marker system to support augmented reality. They can be used to facilitate the appearance of virtual objects, games, and animations within the real world. Augmented Reality tags are widely used in Computer Vision applications.
 
+The reference AR tag images used for this project are:
+![](AR_tags.png)
+
 ## Homography
 
 A homography is a perspective transformation of a plane, i.e, a reprojection of a plane from one camera into a different camera view, subject to change in the translation (position) and rotation (orientation) of the camera.
