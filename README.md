@@ -17,7 +17,9 @@ A homography is a perspective transformation of a plane, i.e, a reprojection of 
 ## Project Requirements/ Dependencies
 
 OpenCV
+
 Python3
+
 Numpy
 
 ## Pipeline
@@ -36,11 +38,12 @@ Numpy
 
 ## Command to run code
 ```
-python 3 ar.py
+python3 ar.py
 ```
 ## References
 
 https://en.wikipedia.org/wiki/ARTag
+
 https://opencv.org/
 
 
@@ -49,7 +52,7 @@ The Repository is Licensed under the MIT License.
 ```
 MIT License
 
-Copyright (c) 2019 Charan Karthikeyan Parthasarathy Vasanthi, Nagireddi Jagadesh Nischal.
+Copyright (c) 2019 Charan Karthikeyan Parthasarathy Vasanthi, Nagireddi Jagadesh Nischal, Sai Manish V
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
